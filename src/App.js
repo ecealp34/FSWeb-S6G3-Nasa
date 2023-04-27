@@ -2,8 +2,15 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ApodViewer from "./components/AppdViewer";
 import "./App.css";
+// import styled from 'styled'
+import { Input } from "reactstrap";
 
-
+// const Button = styled.button`
+//   color: '#fff';
+//   background-color: purple;
+//   padding: 8px 16px;
+//   border-radius: 4px
+// `
 function App() {
   
 const [apod, setApod] = useState();
@@ -43,9 +50,11 @@ function fetchApod(datePara) {
  
     return (
     <div className="App">
+      
         {!loaded && <p>Loading...<span role="img" aria-label='go!'>🚀</span>!</p>}
         {loaded &&<ApodViewer APPd={apod} />}
- 
+        
+        
     </div> 
       
    
@@ -54,4 +63,11 @@ function fetchApod(datePara) {
 
   }
 
+
+
+
 export default App;
+
+
+
+
