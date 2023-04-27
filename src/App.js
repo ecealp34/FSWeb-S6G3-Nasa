@@ -1,46 +1,57 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Home from "./components/Home/Home";
+import ApodViewer from "./components/AppdViewer";
 import "./App.css";
+
 
 function App() {
   
-  useEffect(() => {
+const [apod, setApod] = useState();
+const [loaded, setLoaded] = useState(false);
+// const [currentDate, setCurrentDate] = useState(new Date().toISOString().split("T")[0]);
+
+function fetchApod(datePara) {
        axios
-       .get("https://api.nasa.gov/planetary/apod?api_key=Nf7wEbCtFOniDBQB9Bb0Vh6hucBk7aJKM7KRLQ9G")
+       .get("https://api.nasa.gov/planetary/apod?api_key=XwDXXy4QP4bA97QXio4j7FhWDjBdLJcIdq2NnJ94")
        .then((res) => {
         console.log("products:", res.data);
+        setApod(res.data);
+        setLoaded(true);
        })
-    }, [])
-  
+       .catch((err) => {
+        setLoaded(false);
+       }) 
+       .finally(() => {
+        console.log("final")
+       });
+    }
+    
+    useEffect(() => {
+      fetchApod();
+   }, []);
+    
+  //   function fetchApod(datePara) { -
+  //   }
+  //   useEffect(() => {
+  //     fetchApod(currentDate);
+  //  }, [currentDate]);
+
+  //  function dateChangeHandler(e) {
+  //   console.log(e.target.value);
+  //   setCurrentDate(e.target.value);
+  //  }
+ 
     return (
-
     <div className="App">
-    <header className = "App-header">
-      <div>
-     </div>
-      <h1>NASA</h1>
+        {!loaded && <p>Loading...<span role="img" aria-label='go!'>🚀</span>!</p>}
+        {loaded &&<ApodViewer APPd={apod} />}
+ 
+    </div> 
       
-      <nav>
-        <a>Home</a>
-        <a>About</a>
-  
-      </nav>
-      </header>
-     
-      <input type="text" name="ara" class="search-btn" ></input>
-      <button type="submit" class="btn">submit</button>
+   
+    );
+   
 
-      <h2>Astronomy Photo Of The Day</h2>
-     
-      
-      <p>
-        <span role="img" aria-label='go!'>🚀</span>!
-      </p>
-      
-    </div>
-  );
-}
+  }
 
 export default App;

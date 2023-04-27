@@ -2,25 +2,6 @@
   text-align: center;
 }
 
-h1 {
-  background-color: black;
-  color: wheat;
-  margin: 3rem;
-  padding: 3rem;
-  width: 85%;
-  font-size: 3rem;
-
-}
-
-nav a {
-  text-decoration: underline;
-  display:flex;
- 
-  margin: 2 rem;
-  padding: 2 rem;
-  background-color: #bab0b0;
-  color:rgb(107, 8, 105)
-}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
